@@ -79,7 +79,7 @@ useEffect(() => {
     await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: window.location.orgin,
+        redirectTo: "https://smart-bookmark-qufayvr3d-darshans-projects-bb54c81b.vercel.app",
       },
     });
   };
