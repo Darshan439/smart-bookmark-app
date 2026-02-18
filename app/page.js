@@ -87,6 +87,12 @@ useEffect(() => {
   const handleLogout = async () => {
     await supabase.auth.signOut();
   };
+  const handleDelete = async (id) => {
+  await supabase
+    .from("bookmarks")
+    .delete()
+    .eq("id", id);
+};
 
   return (
     <div style={{ display: "flex", height: "100vh", justifyContent: "center", alignItems: "center" }}>
@@ -144,11 +150,25 @@ useEffect(() => {
       <a
   href={bookmark.url}
   target="_blank"
-  rel="noopener noreferrer"
->
-  {bookmark.title}
-</a>
-    </li>
+    rel="noopener noreferrer"
+  >
+    {bookmark.title}
+  </a>
+
+  <button
+    onClick={() => handleDelete(bookmark.id)}
+    style={{
+      background: "red",
+      color: "white",
+      border: "none",
+      padding: "4px 8px",
+      marginLeft: "10px",
+      cursor: "pointer"
+    }}
+  >
+    Delete
+  </button>
+</li>
   ))}
 </ul>
         </div>
