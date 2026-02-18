@@ -88,11 +88,16 @@ useEffect(() => {
     await supabase.auth.signOut();
   };
   const handleDelete = async (id) => {
-  await supabase
+  const { error } = await supabase
     .from("bookmarks")
     .delete()
     .eq("id", id);
+
+  if (!error) {
+    fetchBookmarks();
+  }
 };
+
 
   return (
     <div style={{ display: "flex", height: "100vh", justifyContent: "center", alignItems: "center" }}>
